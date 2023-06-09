@@ -36,7 +36,6 @@
                 this.$store.dispatch("products/getProducts", this.filter)
             },
             selectedPage(index){
-                console.log(index)
                 if(index == "Next"){
                     this.filter.skip += 10
                 }else{
