@@ -22,7 +22,5 @@ const router = createRouter({
     history: createWebHistory(),
     routes
 })
-
 createApp(App).use(router).use(store).mount('#app')
-
 import "bootstrap/dist/js/bootstrap.js"

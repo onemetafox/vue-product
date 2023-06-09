@@ -1,9 +1,9 @@
 import { createStore } from "vuex";
-import { product } from "./product.module";
+import { products } from "./product.module";
 
 const store = createStore({
     modules: {
-        product,
+        products,
     },
 });
 
