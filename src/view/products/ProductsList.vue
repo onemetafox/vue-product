@@ -1,67 +1,54 @@
 <template>
     <div class="post">
-        <div v-if="error" class="error">{{ error }}</div>
-        <div v-if="products" class="container">
-            <table class="table">
-                <thead>
-                    <th>No</th>
-                    <th>thumbnail</th>
-                    <th>title</th>
-                    <th>description</th>
-                    <th>discountPercentage</th>
-                    <th>rating</th>
-                    <th>stock</th>
-                    <th>brand</th>
-                    <th>category</th>
+        <div  class="container">
+            <table class="table table-striped" v-if="products">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">thumbnail</th>
+                        <th scope="col">title</th>
+                        <th scope="col">description</th>
+                        <th scope="col">discountPercentage</th>
+                        <th scope="col">rating</th>
+                        <th scope="col">stock</th>
+                        <th scope="col">brand</th>
+                        <th scope="col">category</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    <tr v-for = "(product, index) in products" v-bind:key="index">
-                        <product-item :product = "product" :index = "index" />
+                    <tr v-for = "(product, index) in products">
+                        <product-item :product = "product" />
                     </tr>
                 </tbody>
             </table>
+            <page-nation />
+
         </div>
+
     </div>
 </template>
 
 <script>
     import Product from "@/components/Product.vue"
+    import Pagination from "@/components/Pagination.vue"
     import { mapState } from "vuex"
     export default {
         name:"product-list",
         components:{
-            'product-item' : Product
+            'product-item' : Product,
+            'page-nation' : Pagination
         },
         data() {
             return {
-                loading: true,
-                filter: null,
-                error: null,
-            }
-        },
-        created() {
-            // watch the params of the route to fetch the data again
-            this.$watch(
-                () => this.$route.params,
-                () => {
-                    this.fetchData()
+                filter: {
+                    skip: 0,
+                    limit: 10
                 },
-                // fetch the data when the view is created and the data is
-                // already being observed
-                { immediate: true }
-            )
-        },
-        methods: {
-            fetchData() {
-                this.error = this.filter = null
-                // replace `getPost` with your data fetching util / API wrapper
-                this.$store.dispatch("products/getProducts", this.filter)
-            },
+            }
         },
         computed: mapState({
             // arrow functions can make the code very succinct!
             products: state => state.products.products,
-            loading: state => state.products.loading,
             error: state => state.products.status
         })
     }
