@@ -30,16 +30,13 @@
     import { mapState } from "vuex"
     import { watch } from "vue"
     export default {
-
         name:"product-search",
         components:{
             'product-item' : Product
         },
-        
         watch : {
             queryStr:{
                 handler(newVal, oldVal){
-                    console.log(newVal)
                     this.fetchData()
                 },
             },
@@ -49,12 +46,8 @@
                 this.$store.dispatch("products/searchProducts", this.queryStr)
             }
         },
-        
         computed:mapState({
-            // arrow functions can make the code very succinct!
-            products: state => state.products.products,
-            error: state => state.products.status,
-            
+            products: state => state.products.products
         }),
     }
 </script>

@@ -37,7 +37,6 @@
             'page-nation' : Pagination
         },
         computed: mapState({
-            // arrow functions can make the code very succinct!
             products: state => state.products.products,
         }),
     }

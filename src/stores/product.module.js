@@ -1,12 +1,18 @@
 import ProductService from '../services/product.service';
 
 const initialState = { products : null, total: 0, skip :0, limit: 30, status: true, msg: "" }
-  
-
+/**
+ * call product server and response data store into vuex store
+ */
 export const products = {
     namespaced: true,
     state: initialState,
     actions: {
+        /**
+         * action handler from vue front end
+         * @param {*} filter - limit and skip
+         * @returns 
+         */
         getProducts({ commit }, filter) {
             return ProductService.getProducts(filter).then(
                 res => {
@@ -19,6 +25,11 @@ export const products = {
                 }
             );
         },
+        /**
+         * action handler from vue front end
+         * @param {*} queryStr 
+         * @returns 
+         */
         searchProducts({ commit }, queryStr) {
             return ProductService.searchProducts(queryStr).then(
                 res => {
@@ -32,6 +43,9 @@ export const products = {
             );
         },
     },
+    /**
+     * mutation to store data in to vuex
+     */
     mutations: {
         getProducts(state, data) {
             state.products = data.products;

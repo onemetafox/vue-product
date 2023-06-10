@@ -21,17 +21,13 @@
     import useDebouncedRef from '@/utilities/useDebouncedRef'
     import { watch } from "vue"
     import debounce from 'lodash.debounce'
-
     import { mapState } from "vuex"
     export default {
         name:"index-view",
         setup() {
             const searchQuery = useDebouncedRef('', 500)
-
             watch(searchQuery, newQuery => {
-                
             })
-
             return {
                 searchQuery,
             }
@@ -40,22 +36,5 @@
             'product-list' : ProductsList,
             'product-search' : ProductSearch
         },
-        data() {
-            return {
-                searchView : false,
-                listView : true
-            }
-        },
-        methods : {
-            submitSearch() {
-                if(this.searchQuery != ""){
-                    this.searchView = true
-                    this.listView = false
-                }else{
-                    this.searchView = false
-                    this.listView = true
-                }
-            }
-        }
     }
 </script>
