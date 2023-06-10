@@ -26,31 +26,30 @@
 <script>
     import Product from "@/components/Product.vue"
     import debounce from 'lodash.debounce'
-    
+
     import { mapState } from "vuex"
+    import { watch } from "vue"
     export default {
+
         name:"product-search",
         components:{
             'product-item' : Product
         },
-        setup(){
-            watch(queryStr, debounce(() => {
-                console.log(queryStr)
-            }, 500))
+        
+        watch : {
+            queryStr:{
+                handler(newVal, oldVal){
+                    console.log(newVal)
+                    this.fetchData()
+                },
+            },
         },
-        // watch : {
-        //     queryStr(newQuestion, oldQuestion) {
-        //         // if(newQuestion != ""){
-        //         //     setTimeout( ()=>{
-        //         //         this.$store.dispatch("products/searchProducts", this.queryStr)
-        //         //     },  500);
-        //         // }
-        //         console.log(newQuestion + ":::::" + oldQuestion);
-        //         debounce(() => {
-        //             console.log(newQuestion)
-        //         }, 500)
-        //     },
-        // },
+        methods: {
+            fetchData(){
+                this.$store.dispatch("products/searchProducts", this.queryStr)
+            }
+        },
+        
         computed:mapState({
             // arrow functions can make the code very succinct!
             products: state => state.products.products,
