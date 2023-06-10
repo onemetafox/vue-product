@@ -18,7 +18,6 @@ class ProductService {
      * @returns 
      */
     searchProducts (queryStr) {
-        console.log(API_URL+"/search?q="+ queryStr)
         return axios.get(API_URL+"/search?q="+ queryStr).then(res =>{
             return res;
         });

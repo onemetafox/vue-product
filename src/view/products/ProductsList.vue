@@ -28,11 +28,13 @@
 
 <script>
     import Product from "@/components/Product.vue"
+    import ProductHeader from "@/components/ProductHearder.vue"
     import Pagination from "@/components/Pagination.vue"
     import { mapState } from "vuex"
     export default {
         name:"product-list",
         components:{
+            'product-header': ProductHeader,
             'product-item' : Product,
             'page-nation' : Pagination
         },

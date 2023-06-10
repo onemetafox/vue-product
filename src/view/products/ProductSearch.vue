@@ -1,17 +1,7 @@
 <template>
     <table class="table table-striped" v-if="products">
         <thead class="thead-dark">
-            <tr>
-                <th scope="col">id</th>
-                <th scope="col">thumbnail</th>
-                <th scope="col">title</th>
-                <th scope="col">description</th>
-                <th scope="col">discountPercentage</th>
-                <th scope="col">rating</th>
-                <th scope="col">stock</th>
-                <th scope="col">brand</th>
-                <th scope="col">category</th>
-            </tr>
+            <product-header />
         </thead>
         <tbody>
             <tr v-for = "(product, index) in products">
@@ -25,6 +15,7 @@
 </script>
 <script>
     import Product from "@/components/Product.vue"
+    import ProductHeader from "@/components/ProductHearder.vue"
     import debounce from 'lodash.debounce'
 
     import { mapState } from "vuex"
@@ -32,6 +23,7 @@
     export default {
         name:"product-search",
         components:{
+            'product-hearder': ProductHeader,
             'product-item' : Product
         },
         watch : {

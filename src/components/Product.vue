@@ -17,6 +17,3 @@
         name: 'product-item'
     }
 </script>
-<style>
-    
-</style>
