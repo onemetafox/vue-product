@@ -22,9 +22,7 @@
                 </tbody>
             </table>
             <page-nation />
-
         </div>
-
     </div>
 </template>
 
@@ -38,18 +36,9 @@
             'product-item' : Product,
             'page-nation' : Pagination
         },
-        data() {
-            return {
-                filter: {
-                    skip: 0,
-                    limit: 10
-                },
-            }
-        },
         computed: mapState({
             // arrow functions can make the code very succinct!
             products: state => state.products.products,
-            error: state => state.products.status
-        })
+        }),
     }
 </script>

@@ -7,6 +7,12 @@ class ProductService {
             return res;
         });
     }
+    searchProducts (queryStr) {
+        console.log(API_URL+"/search?q="+ queryStr)
+        return axios.get(API_URL+"/search?q="+ queryStr).then(res =>{
+            return res;
+        });
+    }
 
 }
 export default new ProductService();

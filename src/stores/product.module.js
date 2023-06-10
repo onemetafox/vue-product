@@ -19,6 +19,18 @@ export const products = {
                 }
             );
         },
+        searchProducts({ commit }, queryStr) {
+            return ProductService.searchProducts(queryStr).then(
+                res => {
+                    commit('getProducts', res.data);
+                    return Promise.resolve(res.data);
+                },
+                error => {
+                    commit('getFailure', {status: false, msg :error});
+                    return Promise.reject(error);
+                }
+            );
+        },
     },
     mutations: {
         getProducts(state, data) {
@@ -30,7 +42,7 @@ export const products = {
             state.status = true;
             state.msg = "Success";
         },
-        loginFailure(state, data) {
+        getFailure(state, data) {
             state.products = null;
             state.loading = false;
             state.status = data.status;

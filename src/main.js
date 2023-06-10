@@ -4,16 +4,16 @@ import {createWebHistory, createRouter} from "vue-router";
 import "bootstrap/dist/css/bootstrap.min.css"
 import App from './App.vue'
 
-import Products from "@/view/products/ProductsList.vue";
+import Index from "@/view/products/Index.vue";
 
 const routes = [
     {
         path : "/landing",
-        component : Products
+        component : Index
     },
     {
         path : "/",
-        component : Products
+        component : Index
     }
 ]
 import store from "@/stores";
